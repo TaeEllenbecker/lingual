@@ -1,0 +1,97 @@
+
+/*
+    Color palette (from your request):
+    --color-secondary: #B061FF (accent)
+    --color-text:      #4A4A4A (body text, also used for primary UI color)
+*/
+:root {
+    --color-secondary: #B061FF;
+    --color-text: #FFFFFF;
+    --color-bg: #FFFFFF;
+    --color-muted: #F5F5F5;
+    --color-border: #E5E5E5;
+    --radius: 1rem;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+    --shadow-sm: 0 4px 14px rgba(0,0,0,.06);
+}
+html{
+    scroll-behavior: smooth;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+    --color-bg: #0F0F10;
+    --color-muted: #161618;
+    --color-border: #2A2A2E;
+    }
+    body:not(.force-light) {
+    background: var(--color-bg);
+    color: #EDEDED;
+    }
+}
+
+/* Light mode enforced */
+
+/* Basic reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+img { max-width: 100%; display: block; }
+a { color: var(--color-secondary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font: inherit; }
+
+/* Layout helpers */
+.container { width: min(1100px, 92%); margin-inline: auto; }
+.stack { display: grid; gap: 1.25rem; }
+.grid { display: grid; gap: 1.25rem; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px){ .grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px){ .grid-3 { grid-template-columns: 1fr; } }
+
+/* Components */
+.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(8px);
+    background: color-mix(in hsl, var(--color-bg) 85%, transparent);
+    border-bottom: 1px solid var(--color-border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
+.brand { display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .02em; }
+.brand-badge { width: 32px; height: 32px; border-radius: 10px; background: var(--color-secondary); box-shadow: var(--shadow-sm); }
+.menu { display: flex; gap: 1rem; align-items: center; }
+.menu a { padding: .5rem .75rem; border-radius: .6rem; }
+.menu a:hover { background: var(--color-muted); text-decoration: none; }
+
+.actions { display: flex; gap: .6rem; align-items: center; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .65rem 1rem; border-radius: .8rem; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); cursor: pointer; background: var(--color-bg); color: var(--color-text); }
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-primary { background: var(--color-secondary); border-color: transparent; color: white; }
+
+.hero { padding: 5rem 0 3rem; }
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.05; margin: 0 0 1rem; color: var(--color-text); }
+.hero p { font-size: 1.125rem; opacity: .9; max-width: 60ch; }
+.hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.25rem; }
+
+.card { background: var(--color-muted); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow-sm); }
+.card h3 { margin: 0 0 .25rem; color: var(--color-text); }
+.card p { margin: 0; opacity: .95; }
+
+.section { padding: 2.5rem 0; }
+.section h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); margin: 0 0 .75rem; color: var(--color-text); }
+.pill { display: inline-block; font-size: .875rem; padding: .35rem .7rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-bg); }
+
+.cta { background: linear-gradient(135deg, color-mix(in hsl, var(--color-secondary) 30%, var(--color-bg)), var(--color-muted)); border: 1px solid var(--color-border); border-radius: calc(var(--radius) * 1.25); padding: 2rem; display: grid; gap: 1rem; align-items: center; box-shadow: var(--shadow); }
+.cta h3 { margin: 0; color: var(--color-text); }
+
+.footer { padding: 2rem 0; border-top: 1px solid var(--color-border); font-size: .95rem; }
+
+/* Accessibility + focus */
+:focus-visible { outline: 3px solid color-mix(in hsl, var(--color-secondary) 60%, white); outline-offset: 2px; border-radius: .5rem; }
+/* Theme toggle and light/dark mode logic removed. Always dark mode. */
